@@ -2,6 +2,7 @@
 #include <string>
 #include "game.hpp"
 #include "die.hpp"
+#include "loaded_die.hpp"
 #include "utility.hpp"
 
 // Definition of Game constructor; displays the menu
@@ -54,14 +55,25 @@ Player Game::makePlayer(int num)
 
 void Game::play()
 {
+    std::cout << "inside play" << std::endl;
+    Die *p1Die;
+    Die *p2Die;
     // Make die for each player based on settings
     if (p1.getType() == NORMAL)
-        Die p1Die(p1.getSides());
+    {
+        Die temp = Die(p1.getSides());
+        p1Die = &temp;
+    }
     else
-        LoadedDie p1Die(p1.getSides());
+    {
+        LoadedDie temp = LoadedDie(p1.getSides());
+        p1Die = &temp;
+    }
 
     if (p2.getType() == NORMAL)
-        Die p2Die(p2.getSides());
+        *p2Die = Die(p2.getSides());
     else
         LoadedDie p2Die(p2.getSides());
+
+    std::cout << "p1Die roll: " << p1Die->roll() << std::endl;
 }

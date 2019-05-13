@@ -4,7 +4,7 @@
 // Die class declaration
 class Die
 {
-    private:
+    protected:
         int sides;
     public:
         Die(int = 6);
