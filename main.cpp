@@ -10,6 +10,7 @@ int main()
     if (game.getMenuChoice() == PLAY)
     {
         game.setup();
+        game.play();
     }
 
     return 0;

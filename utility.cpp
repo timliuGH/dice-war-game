@@ -1,17 +1,20 @@
 #include <iostream>
 #include "utility.hpp"
 
-int getPositiveInt(int max, std::string err)
+int getPosInt(int max, std::string err)
 {
+    // Get int from user
     int value;
     std::cin >> value;
+
+    // Ensure value is no more than max
     while (value <= 0 || value > max || std::cin.fail() || 
            std::cin.get() != '\n')
     {
-        std::cout << err << ": ";
-        std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        std::cin >> value;
+        std::cout << err << ": ";       // Output error message
+        std::cin.clear();               // Clear error flag on cin
+        std::cin.ignore(INT_MAX, '\n'); // Skip to next newline
+        std::cin >> value;              // Get int from user
     }
 
     return value;
